@@ -1,0 +1,30 @@
+name: Ubuntu
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  python-module-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@4
+        with:
+          python-version: "3.10"
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python -
+          poetry --version
+
+      - name: Install Modules
+        run: |
+          poetry install
+          poetry install --with=dev
+      
+      - name: Run Test
+        run: poetry run pytest --cov
