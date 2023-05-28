@@ -36,6 +36,9 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: /home/runner/work/pracci/
 
+      - name: Build for deploy
+        run: poetry build
+
       - name: Upload to PyPi for deploy
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
