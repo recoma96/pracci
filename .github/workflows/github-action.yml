@@ -35,3 +35,8 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: /home/runner/work/pracci/
+
+      - name: Upload to PyPi for deploy
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_TOKEN }}
